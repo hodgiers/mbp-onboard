@@ -82,6 +82,8 @@ brew "wakeonlan"
 brew "wimlib"
 # Bring your favorite shell wherever you go through the ssh
 brew "xxh"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
 # Note editor and whiteboard
@@ -110,8 +112,6 @@ cask "iterm2"
 cask "logi-options+"
 # Software for Logitech devices
 cask "logitech-options"
-# Menubar app for easy ChatGPT access with conversation and inline modes
-cask "macgpt"
 # Open-source, self-hosted Slack-alternative
 cask "mattermost"
 # App to write, plan, collaborate, and get organised
@@ -152,17 +152,10 @@ mas "1Password for Safari", id: 1569813296
 mas "Apple Configurator", id: 1037126344
 mas "BetterSnapTool", id: 417375580
 mas "Bridge Control", id: 1632237342
-mas "CleanMyMac", id: 1339170533
 mas "Developer", id: 640199958
 mas "Discovery", id: 1381004916
-mas "djay Pro", id: 450527929
 mas "EasyMQTT", id: 1523099606
-mas "Folder Tidy", id: 486626129
-mas "Foundation Galactic Frontier", id: 6737595599
-mas "GarageBand", id: 682658836
 mas "Home Assistant", id: 1099568401
-mas "HomeCam", id: 1292995895
-mas "IPCams", id: 1045600272
 mas "Keeper for Safari", id: 6444685332
 mas "Keyword Search", id: 1558453954
 mas "Kindle", id: 302584613
