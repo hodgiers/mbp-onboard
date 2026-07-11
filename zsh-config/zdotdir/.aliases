@@ -53,6 +53,19 @@ alias bcat='bat --paging=never'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 #
 function remote() { echo 'sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa '$1':/ ~/remotehosts' | pbcopy }
+
+# 1Password-powered helpers -- UPDATE THESE FOR YOUR OWN 1PASSWORD SETUP.
+# They read a password from your vault and put it on the clipboard.
+# Get your own secret references: 1Password app > open an item > click the
+# down-arrow next to a field > "Copy Secret Reference", then paste it into
+# `op read` below. Requires the 1Password CLI to be set up -- see README.
+#
+# Copy a password to the clipboard, then run a command with sudo:
+# function please(){ op read "op://<vault>/<item>/password" | pbcopy && sudo "$@" }
+#
+# Copy a device password to the clipboard, then ssh to it:
+# function mydevice(){ op read "op://<vault>/<item>/password" | pbcopy && ssh mydevice }
+
 function myalias() { sed -n -e '/#misc-custom/,$p' ~/.config/zsh/.aliases }
 function pubkey(){ ssh-keygen -y -f $1 }
 function sods(){ 
