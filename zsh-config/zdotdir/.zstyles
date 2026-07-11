@@ -1,0 +1,26 @@
+#!/bin/zsh
+#
+# .zstyles - Set zstyle settings for plugins that need them.
+#
+
+#
+# Antidote
+#
+
+# zstyle ':antidote:bundle' file ${ZDOTDIR:-~}/.zplugins.txt
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+
+#
+# Color
+#
+
+# zephyr's color plugin and belak/zsh-utils' utility plugin BOTH alias grep/ls
+# with `--color=auto` using a self-appending idiom, which stacks the flag
+# (grep --color=auto --color=auto). Skip zephyr's alias block so zsh-utils is
+# the single source of the grep/ls color aliases.
+zstyle ':zephyr:plugin:color:alias' skip yes
