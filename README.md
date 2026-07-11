@@ -1,6 +1,6 @@
 # New Mac Setup
 
-One-command setup: installs Homebrew, then 40 CLI tools, 33 apps,
+One-command setup: installs Homebrew, then 44 CLI tools, 32 apps,
 and 26 Mac App Store apps, plus a zsh setup with the antidote plugin
 manager (config in `zsh-config/`, installed to `~/.config/zsh`).
 
@@ -19,6 +19,25 @@ manager (config in `zsh-config/`, installed to `~/.config/zsh`).
 
 3. Accept the Xcode Command Line Tools dialog when it appears, and
    enter your password when Homebrew asks.
+
+## Third-party taps and `brew trust`
+
+Recent Homebrew versions ignore packages from third-party taps until
+you trust them. This Brewfile uses four such taps; if their packages
+get skipped (Homebrew prints a "taps are not trusted" warning), trust
+them and re-run the installer:
+
+```
+brew trust 1password/tap antoniorodr/memo henrygd/beszel steipete/tap
+```
+
+That trusts everything in those taps, current and future. If you'd
+rather trust only the specific packages used here:
+
+```
+brew trust --formula antoniorodr/memo/memo henrygd/beszel/beszel-agent \
+  steipete/tap/imsg steipete/tap/peekaboo steipete/tap/remindctl
+```
 
 ## 1Password CLI setup
 
