@@ -6,13 +6,16 @@ manager (config in `zsh-config/`, installed to `~/.config/zsh`).
 
 ## How to run
 
-1. Copy this whole folder to the new Mac (AirDrop works fine).
-2. Open Terminal and run:
+1. On the new Mac, open Terminal and run:
 
    ```
-   cd ~/Downloads/new-mac-setup   # or wherever you put it
+   git clone https://github.com/hodgiers/mbp-onboard.git
+   cd mbp-onboard
    ./install.sh
    ```
+
+   (Or download the ZIP from GitHub — green "Code" button > Download ZIP —
+   and run `./install.sh` from the unzipped folder.)
 
 3. Accept the Xcode Command Line Tools dialog when it appears, and
    enter your password when Homebrew asks.
