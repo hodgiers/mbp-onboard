@@ -28,8 +28,6 @@ brew "gh"
 brew "git-lfs"
 # Render markdown on the CLI
 brew "glow"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
 # Calculate various network masks, etc. from a given IP address
 brew "ipcalc"
 # Lightweight and flexible command-line JSON processor
@@ -66,8 +64,8 @@ brew "signal-cli"
 brew "speedtest-cli"
 # Multi-modal AI tool to extract and summarize content
 brew "summarize"
-# Simplified and community-driven man pages
-brew "tldr"
+# Official tldr client written in Rust
+brew "tlrc"
 # Command-line interface to the freedesktop.org trashcan
 brew "trash-cli", link: true
 # Extremely fast Python package installer and resolver, written in Rust
@@ -110,14 +108,12 @@ cask "google-chrome"
 cask "iterm2"
 # Software for Logitech devices
 cask "logi-options+"
-# Software for Logitech devices
-cask "logitech-options"
 # Open-source, self-hosted Slack-alternative
 cask "mattermost"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Programmable solid 3D CAD modeller
-cask "openscad"
+cask "openscad@snapshot"
 # Desktop virtualization software
 cask "parallels"
 # Collaboration platform for API development
@@ -147,7 +143,7 @@ cask "wireshark-app"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
 # Application for configuring any YubiKey
-cask "yubico-yubikey-manager"
+cask "yubico-authenticator"
 mas "1Password for Safari", id: 1569813296
 mas "Apple Configurator", id: 1037126344
 mas "BetterSnapTool", id: 417375580
