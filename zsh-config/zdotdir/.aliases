@@ -1,0 +1,114 @@
+#!/bin/zsh
+#
+# .aliases - Set whatever shell aliases you want.
+#
+
+# single character aliases - be sparing!
+alias _=sudo
+alias l=ls
+alias g=git
+
+# mask built-ins with better defaults
+alias vi=vim
+
+# more ways to ls
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias ldot='ls -ld .*'
+alias latr= 'ls -latr'
+alias lsize='ls -l --block-size=M'
+
+# fix common typos
+alias quit='exit'
+alias cd..='cd ..'
+
+# tar
+alias tarls="tar -tvf"
+alias untar="tar -xf"
+
+# find
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+
+# url encode/decode
+alias urldecode='python3 -c "import sys, urllib.parse as ul; \
+    print(ul.unquote_plus(sys.argv[1]))"'
+alias urlencode='python3 -c "import sys, urllib.parse as ul; \
+    print (ul.quote_plus(sys.argv[1]))"'
+
+# misc
+alias zshrc='${EDITOR:-vim} "${ZDOTDIR:-$HOME}"/.zshrc'
+alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
+alias zdot='cd ${ZDOTDIR:-~}'
+
+#misc-custom
+alias openws='open -a Sublime\ Text.app'
+alias openwv='open -a Visual\ Studio\ Code.app'
+#alias mypubip='curl icanhazip.com'
+alias reload_profile="exec zsh"
+alias shortcuts='cat ~/Desktop/terminal_shortcuts.txt'
+alias lsize='ls -l --block-size=M'
+alias fullhistory='history 1'
+alias bcat='bat --paging=never'
+alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+#
+function remote() { echo 'sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa '$1':/ ~/remotehosts' | pbcopy }
+function myalias() { sed -n -e '/#misc-custom/,$p' ~/.config/zsh/.aliases }
+function pubkey(){ ssh-keygen -y -f $1 }
+function sods(){ 
+    echo "sudo dscl . -merge /groups/admin GroupMembership /$USER" | pbcopy
+    }
+function myip() {
+  echo "___________\nLocal IPs and Interfaces\n______________________"
+  ifconfig | awk '
+    /flags=/ {iface = $1}
+    $1 == "inet" {print iface ": " $2 "\n______________________"}
+  '
+  echo "_________\nPublic IP\n______________"
+  curl icanhazip.com
+}
+function randomer() {
+    head /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9-.' | head -c 17
+}
+
+# Add an SSH host entry to a file in ~/.ssh/devices
+# usage: addhost <name> <ip> <file> [user] [port]
+function addhost() {
+    local name="$1" ip="$2" file="$3" user="${4:-$USER}" port="${5:-22}"
+    local dir="$HOME/.ssh/devices" path
+
+    if [[ -z "$name" || -z "$ip" || -z "$file" ]]; then
+        print -u2 "usage: addhost <name> <ip> <file> [user] [port]"
+        return 1
+    fi
+
+    path="$dir/$file"
+    if [[ ! -e "$path" ]]; then
+        print -u2 "addhost: '$file' not found. Available files:"
+        print -rl -- "$dir"/*(N:t) >&2
+        return 1
+    fi
+
+    # Duplicate check using zsh builtins only (no external grep/PATH dependency)
+    local _hkw _hname
+    while read -r _hkw _hname _; do
+        if [[ "${_hkw:l}" == "host" && "${_hname:l}" == "${name:l}" ]]; then
+            print -u2 "addhost: host '$name' already exists in $file"
+            return 1
+        fi
+    done < "$path"
+
+    {
+        printf '\nHost %s\n'        "$name"
+        printf '    HostName %s\n'  "$ip"
+        printf '    User %s\n'      "$user"
+        [[ "$port" != "22" ]] && printf '    Port %s\n' "$port"
+    } >> "$path"
+
+    print "Added '$name' ($ip) to $file"
+}
+
+# Tab-complete the device-file argument (3rd positional)
+_addhost() { (( CURRENT == 4 )) && _files -W "$HOME/.ssh/devices"; }
+compdef _addhost addhost
+
