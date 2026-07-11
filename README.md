@@ -4,6 +4,28 @@ One-command setup: installs Homebrew, then 44 CLI tools, 32 apps,
 and 26 Mac App Store apps, plus a zsh setup with the antidote plugin
 manager (config in `zsh-config/`, installed to `~/.config/zsh`).
 
+## Why Homebrew?
+
+- **One command, everything installed.** Instead of visiting 30 websites,
+  downloading DMGs, and dragging things to Applications, `brew install`
+  handles download, verification, and installation in seconds — and this
+  whole setup installs itself from a single file (the `Brewfile`).
+- **One command to update everything.** `brew upgrade` updates every CLI
+  tool and app it manages at once. No more "a new version is available"
+  popups from 20 different apps, each with its own updater.
+- **Clean uninstalls.** `brew uninstall` actually removes an app and its
+  support files, instead of leaving junk behind like dragging to Trash.
+- **Your setup becomes reproducible.** `brew bundle dump` writes a list of
+  everything you have installed. New Mac, reinstall, or a friend wants
+  your setup? One file + one command rebuilds the whole machine — which
+  is literally how this repo works.
+- **Safer than random downloads.** Packages come from a huge,
+  community-audited, open-source catalog with checksums verified on
+  install — no hunting for the real download button among fake ads.
+- **It's the standard.** Nearly every dev tool's install docs say
+  `brew install ...` for a reason. It's been the de facto macOS package
+  manager for 15+ years.
+
 ## How to run
 
 1. On the new Mac, open Terminal and run:
