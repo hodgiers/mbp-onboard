@@ -1,8 +1,9 @@
 # New Mac Setup
 
-One-command setup: installs Homebrew, then 44 CLI tools, 32 apps,
-and 26 Mac App Store apps, plus a zsh setup with the antidote plugin
-manager (config in `zsh-config/`, installed to `~/.config/zsh`).
+One-command setup: installs Homebrew, then 37 CLI tools, 35 apps,
+27 Mac App Store apps, 23 VS Code extensions and 1 uv tool, plus a zsh
+setup with the antidote plugin manager (config in `zsh-config/`,
+installed to `~/.config/zsh`).
 
 ## Why Homebrew?
 
@@ -45,21 +46,23 @@ manager (config in `zsh-config/`, installed to `~/.config/zsh`).
 ## Third-party taps and `brew trust`
 
 Recent Homebrew versions ignore packages from third-party taps until
-you trust them. This Brewfile uses four such taps; if their packages
-get skipped (Homebrew prints a "taps are not trusted" warning), trust
-them and re-run the installer:
+you trust them. This Brewfile uses one such tap; if its package gets
+skipped (Homebrew prints a "taps are not trusted" warning), trust it and
+re-run the installer:
 
 ```
-brew trust 1password/tap antoniorodr/memo henrygd/beszel steipete/tap
+brew trust henrygd/beszel
 ```
 
-That trusts everything in those taps, current and future. If you'd
-rather trust only the specific packages used here:
+That trusts everything in the tap, current and future. If you'd rather
+trust only the package used here:
 
 ```
-brew trust --formula antoniorodr/memo/memo henrygd/beszel/beszel-agent \
-  steipete/tap/imsg steipete/tap/peekaboo steipete/tap/remindctl
+brew trust --formula henrygd/beszel/beszel-agent
 ```
+
+`1password/tap` is no longer used: Homebrew 7 rejects it as an invalid
+tap, and `1password-cli` comes from the main cask repository anyway.
 
 ## 1Password CLI setup
 
@@ -67,7 +70,8 @@ The bundle installs the 1Password CLI (`op`), and `.aliases` contains
 commented-out example functions that pull passwords from your vault
 (look for the "1Password-powered helpers" section). To use them:
 
-1. Install the 1Password desktop app (not included in the Brewfile):
+1. The bundle also installs the 1Password desktop app. If you skipped
+   it, install it with:
 
    ```
    brew install --cask 1password

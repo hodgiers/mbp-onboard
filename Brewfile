@@ -1,10 +1,7 @@
 # ==========================================================================
 # Taps (third-party package sources)
 # ==========================================================================
-tap "1password/tap"
-tap "antoniorodr/memo"
 tap "henrygd/beszel"
-tap "steipete/tap"
 
 # ==========================================================================
 # CLI: shell & terminal quality-of-life
@@ -29,8 +26,6 @@ brew "trash-cli", link: true
 # ==========================================================================
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
-# Access VS Code through the browser
-brew "code-server", restart_service: :changed
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # GitHub command-line tool
@@ -79,8 +74,6 @@ brew "mtr"
 brew "net-snmp"
 # Port scanning utility for large networks
 brew "nmap"
-# Command-line interface for https://speedtest.net bandwidth tests
-brew "speedtest-cli"
 # Sends magic packets to wake up network-devices
 brew "wakeonlan"
 # Bring your favorite shell wherever you go through the ssh
@@ -97,8 +90,6 @@ brew "libusb"
 brew "openssl@3"
 # Mac App Store command-line interface
 brew "mas"
-# CLI and dbus interface for WhisperSystems/libsignal-service-java
-brew "signal-cli"
 # Multi-modal AI tool to extract and summarize content
 brew "summarize"
 # Library to create, extract, and modify Windows Imaging files
@@ -107,16 +98,10 @@ brew "wimlib"
 # ==========================================================================
 # CLI: from third-party taps (require `brew trust`, see README)
 # ==========================================================================
-# CLI to manage Apple Notes and Reminders from the terminal
-brew "antoniorodr/memo/memo"
 # Agent for the Beszel lightweight server monitoring platform
+# (run it from a LaunchAgent with beszel-agent-launcher, not `brew services`:
+# the formula's service ignores ~/.config/beszel/beszel-agent.env)
 brew "henrygd/beszel/beszel-agent"
-# Send and read iMessages from the command-line
-brew "steipete/tap/imsg"
-# macOS screenshot and automation tool
-brew "steipete/tap/peekaboo"
-# Manage Apple Reminders from the command-line
-brew "steipete/tap/remindctl"
 
 # ==========================================================================
 # Apps: passwords & security
@@ -127,18 +112,16 @@ cask "1password"
 cask "1password-cli"
 # Desktop client for Proton Pass
 cask "proton-pass"
-# Application for configuring any YubiKey
-cask "yubico-authenticator"
 
 # ==========================================================================
 # Apps: browsers
 # ==========================================================================
-# Chromium based browser
-cask "arc"
 # Web browser
 cask "firefox"
 # Web browser
 cask "google-chrome"
+# Gecko based web browser
+cask "zen"
 
 # ==========================================================================
 # Apps: AI assistants
@@ -149,6 +132,8 @@ cask "chatgpt"
 cask "claude"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Google's Gemini desktop app (Apple Silicon only)
+cask "google-gemini"
 
 # ==========================================================================
 # Apps: development
@@ -161,6 +146,8 @@ cask "iterm2"
 cask "postman"
 # Text editor for code, markup and prose
 cask "sublime-text"
+# SSH client and terminal
+cask "termius"
 # Open-source code editor
 cask "visual-studio-code"
 # Rust-based terminal
@@ -169,8 +156,10 @@ cask "warp"
 # ==========================================================================
 # Apps: virtualization & remote desktop
 # ==========================================================================
-# Desktop virtualization software
-cask "parallels"
+# Remote desktop client (RDP, VNC and Fluid)
+cask "jump-desktop"
+# Game streaming client for NVIDIA GameStream and Sunshine
+cask "moonlight"
 # Connect to virtual machines using SPICE
 cask "remoteviewer"
 # Virtual machines UI using QEMU
@@ -189,8 +178,6 @@ cask "wireshark-app"
 # ==========================================================================
 # Apps: productivity & communication
 # ==========================================================================
-# Note editor and whiteboard
-cask "affine"
 # Open-source, self-hosted Slack-alternative
 cask "mattermost"
 # App to write, plan, collaborate, and get organised
@@ -199,14 +186,18 @@ cask "notion"
 cask "proton-mail"
 # Desktop client for Proton Meet
 cask "proton-meet"
+# Music streaming service
+cask "spotify"
 
 # ==========================================================================
 # Apps: hardware, imaging & 3D printing
 # ==========================================================================
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# 3D model slicing software for 3D printers, maintained by Bambu Lab
-cask "bambu-studio"
+# iPhone sideloading helper (SideStore pairing and installs)
+cask "iloader"
+# iPhone and iPad manager: backups, transfers, device management
+cask "imazing"
 # Software for Logitech devices
 cask "logi-options+"
 # Programmable solid 3D CAD modeller
@@ -229,6 +220,7 @@ mas "Proton Pass for Safari", id: 6502835663
 # ==========================================================================
 mas "Apple Configurator", id: 1037126344
 mas "Developer", id: 640199958
+mas "Keynote", id: 361285480
 mas "Kindle", id: 302584613
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
@@ -255,3 +247,36 @@ mas "Okta Verify", id: 490179405
 mas "Shortery", id: 1594183810
 mas "SQLPro Studio", id: 985614903
 mas "Steam Link", id: 1246969117
+
+# ==========================================================================
+# VS Code extensions (installed with the `code` CLI from visual-studio-code)
+# ==========================================================================
+vscode "continue.continue"
+vscode "docker.docker"
+vscode "ecmel.vscode-html-css"
+vscode "esbenp.prettier-vscode"
+vscode "gitlab.gitlab-workflow"
+vscode "golang.go"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.powershell"
+vscode "ms-vscode.remote-explorer"
+vscode "openai.chatgpt"
+
+# ==========================================================================
+# Python tools installed with uv
+# ==========================================================================
+# Command-line PDF editing with an LLM
+uv "nano-pdf"
