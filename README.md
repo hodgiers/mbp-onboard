@@ -1,7 +1,7 @@
 # New Mac Setup
 
-One-command setup: installs Homebrew, then 37 CLI tools, 35 apps,
-27 Mac App Store apps, 23 VS Code extensions and 1 uv tool, plus a zsh
+One-command setup: installs Homebrew, then 36 CLI tools, 32 apps,
+24 Mac App Store apps, 23 VS Code extensions and 1 uv tool, plus a zsh
 setup with the antidote plugin manager (config in `zsh-config/`,
 installed to `~/.config/zsh`).
 

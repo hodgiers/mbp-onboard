@@ -19,7 +19,8 @@ brew "glow"
 # Official tldr client written in Rust
 brew "tlrc"
 # Command-line interface to the freedesktop.org trashcan
-brew "trash-cli", link: true
+# (left unlinked on purpose: linked, `trash` shadows macOS /usr/bin/trash and files skip Finder's Trash)
+brew "trash-cli"
 
 # ==========================================================================
 # CLI: development tools
@@ -70,8 +71,6 @@ brew "magic-wormhole"
 brew "mosh"
 # 'traceroute' and 'ping' in a single tool
 brew "mtr"
-# Implements SNMP v1, v2c, and v3, using IPv4 and IPv6
-brew "net-snmp"
 # Port scanning utility for large networks
 brew "nmap"
 # Sends magic packets to wake up network-devices
@@ -142,8 +141,6 @@ cask "google-gemini"
 cask "docker-desktop"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-# Collaboration platform for API development
-cask "postman"
 # Text editor for code, markup and prose
 cask "sublime-text"
 # SSH client and terminal
@@ -180,8 +177,6 @@ cask "wireshark-app"
 # ==========================================================================
 # Open-source, self-hosted Slack-alternative
 cask "mattermost"
-# App to write, plan, collaborate, and get organised
-cask "notion"
 # Client for Proton Mail and Proton Calendar
 cask "proton-mail"
 # Desktop client for Proton Meet
@@ -200,8 +195,6 @@ cask "iloader"
 cask "imazing"
 # Software for Logitech devices
 cask "logi-options+"
-# Programmable solid 3D CAD modeller
-cask "openscad@snapshot"
 # Imaging utility to install operating systems to a microSD card
 cask "raspberry-pi-imager"
 
@@ -222,8 +215,8 @@ mas "Apple Configurator", id: 1037126344
 mas "Developer", id: 640199958
 mas "Keynote", id: 361285480
 mas "Kindle", id: 302584613
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
 mas "Xcode", id: 497799835
 
 # ==========================================================================
@@ -233,8 +226,6 @@ mas "Bridge Control", id: 1632237342
 mas "Discovery", id: 1381004916
 mas "EasyMQTT", id: 1523099606
 mas "Home Assistant", id: 1099568401
-mas "MQTT Explorer", id: 1455214828
-mas "Screens 5", id: 1663047912
 mas "ShellFish", id: 1336634154
 mas "Speedtest", id: 1153157709
 mas "WireGuard", id: 1451685025
@@ -245,7 +236,6 @@ mas "WireGuard", id: 1451685025
 mas "BetterSnapTool", id: 417375580
 mas "Okta Verify", id: 490179405
 mas "Shortery", id: 1594183810
-mas "SQLPro Studio", id: 985614903
 mas "Steam Link", id: 1246969117
 
 # ==========================================================================
