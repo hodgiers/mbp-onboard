@@ -159,6 +159,8 @@ cask "warp"
 # ==========================================================================
 # Remote desktop client (RDP, VNC and Fluid)
 cask "jump-desktop"
+# Controller app for GL.iNet KVM devices (official, from gl-inet.com)
+cask "glkvm"
 # Game streaming client for NVIDIA GameStream and Sunshine
 cask "moonlight"
 # Connect to virtual machines using SPICE
