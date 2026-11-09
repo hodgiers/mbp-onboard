@@ -55,7 +55,6 @@ alias fullhistory='history 1'
 alias bcat='bat --paging=never'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 #
-function remote() { echo 'sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa '$1':/ ~/remotehosts' | pbcopy }
 
 # 1Password-powered helpers -- UPDATE THESE FOR YOUR OWN 1PASSWORD SETUP.
 # They read a password from your vault and put it on the clipboard.
