@@ -15,8 +15,8 @@ alias vi=vim
 alias ll='ls -lh'
 alias la='ls -lAh'
 alias ldot='ls -ld .*'
-alias latr= 'ls -latr'
-alias lsize='ls -l --block-size=M'
+alias latr='ls -latr'
+alias lsize='gls -l --block-size=M'  # GNU ls from coreutils; BSD ls has no --block-size
 
 # fix common typos
 alias quit='exit'
@@ -45,12 +45,12 @@ alias zdot='cd ${ZDOTDIR:-~}'
 # update Homebrew itself + taps, list what's outdated, upgrade formulae
 # and casks, then clear old downloads
 alias brewup='brew update && brew outdated && brew upgrade && brew cleanup'
+[[ -x "$HOME/myenv/bin/sgpt" ]] && alias sgpt="$HOME/myenv/bin/sgpt"  # only where the shell-gpt venv exists
 alias openws='open -a Sublime\ Text.app'
 alias openwv='open -a Visual\ Studio\ Code.app'
 #alias mypubip='curl icanhazip.com'
 alias reload_profile="exec zsh"
-alias shortcuts='cat ~/Desktop/terminal_shortcuts.txt'
-alias lsize='ls -l --block-size=M'
+# alias shortcuts='cat ~/Desktop/terminal_shortcuts.txt'  # disabled 2026-11-09: the file is missing on every Mac
 alias fullhistory='history 1'
 alias bcat='bat --paging=never'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
@@ -63,8 +63,15 @@ function remote() { echo 'sshfs -o allow_other,defer_permissions,IdentityFile=~/
 # down-arrow next to a field > "Copy Secret Reference", then paste it into
 # `op read` below. Requires the 1Password CLI to be set up -- see README.
 #
-# Copy a password to the clipboard, then run a command with sudo:
-# function please(){ op read "op://<vault>/<item>/password" | pbcopy && sudo "$@" }
+# Feed a password straight to sudo's stdin (never touches the clipboard).
+# sudo -S consumes stdin, so use plain sudo for commands that need their own:
+# function please(){ op read "op://<vault>/<item>/password" | sudo -S -p '' "$@" }
+#
+# Refresh sudo's timestamp so the next few minutes need no password:
+# function allow(){ op read "op://<vault>/<item>/password" | sudo -S -p '' -v }
+#
+# Copy your login password to the clipboard:
+# function localpass(){ op read "op://<vault>/<item>/password" | pbcopy }
 #
 # Copy a device password to the clipboard, then ssh to it:
 # function mydevice(){ op read "op://<vault>/<item>/password" | pbcopy && ssh mydevice }
@@ -84,7 +91,7 @@ function myip() {
   curl icanhazip.com
 }
 function randomer() {
-    head /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9-.' | head -c 17
+    LC_ALL=C tr -dc 'A-Za-z0-9-.' < /dev/urandom | head -c "${1:-17}"
 }
 
 # Add an SSH host entry to a file in ~/.ssh/devices

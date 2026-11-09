@@ -34,3 +34,4 @@ path=(
   /usr/bin /bin /usr/sbin /sbin
   $path
 )
+eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -71,9 +71,14 @@ git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-~}/.antidote
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-#
-eval "bindkey "$terminfo[kcuu1]" history-substring-search-up"
-eval "bindkey "$terminfo[kcud1]" history-substring-search-down"
+# History substring search: bind up/down arrows. $terminfo is only populated for a
+# real terminal, so guard those; also bind the raw sequences so this works whether
+# the terminal is in normal or application cursor mode.
+zmodload -i zsh/terminfo 2>/dev/null
+[[ -n ${terminfo[kcuu1]} ]] && bindkey "${terminfo[kcuu1]}" history-substring-search-up
+[[ -n ${terminfo[kcud1]} ]] && bindkey "${terminfo[kcud1]}" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 MAGIC_ENTER_OTHER_COMMAND='eza --long --all --sort=modified'
 if [ -f /opt/homebrew/etc/profile.d/autojump.sh ]; then
 . /opt/homebrew/etc/profile.d/autojump.sh
