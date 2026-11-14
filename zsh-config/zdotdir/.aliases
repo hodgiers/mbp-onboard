@@ -57,17 +57,23 @@ alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 #
 
 # 1Password-powered helpers -- UPDATE THESE FOR YOUR OWN 1PASSWORD SETUP.
-# They read a password from your vault and put it on the clipboard.
+# They read a password from your vault for sudo or the clipboard.
 # Get your own secret references: 1Password app > open an item > click the
 # down-arrow next to a field > "Copy Secret Reference", then paste it into
 # `op read` below. Requires the 1Password CLI to be set up -- see README.
 #
-# Feed a password straight to sudo's stdin (never touches the clipboard).
-# sudo -S consumes stdin, so use plain sudo for commands that need their own:
-# function please(){ op read "op://<vault>/<item>/password" | sudo -S -p '' "$@" }
+# Authenticate first, then run the command with its original stdin. Piping a
+# password directly to sudo <command> can expose it to the command when sudo
+# uses cached credentials. Enable both please and allow together:
+# function please(){ allow && sudo "$@" }
 #
-# Refresh sudo's timestamp so the next few minutes need no password:
-# function allow(){ op read "op://<vault>/<item>/password" | sudo -S -p '' -v }
+# Refresh sudo's timestamp without passing the password to a target command.
+# Stop if the vault read fails, even when sudo credentials are already cached:
+# function allow(){
+#   local password
+#   password=$(op read "op://<vault>/<item>/password") || return
+#   sudo -S -p '' -v <<< "$password"
+# }
 #
 # Copy your login password to the clipboard:
 # function localpass(){ op read "op://<vault>/<item>/password" | pbcopy }
