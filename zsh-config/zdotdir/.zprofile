@@ -34,3 +34,4 @@ path=(
   /usr/bin /bin /usr/sbin /sbin
   $path
 )
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"  # Apple Silicon Homebrew

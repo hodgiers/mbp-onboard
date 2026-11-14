@@ -8,10 +8,14 @@ tap "henrygd/beszel"
 # ==========================================================================
 # Shell extension to jump to frequently used directories
 brew "autojump"
+# GNU File, Shell, and Text utilities (gls for the lsize alias)
+brew "coreutils"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Isolated development environments using Docker (oh-my-zsh docker-compose plugin)
+brew "docker-compose"
 # Modern, maintained replacement for ls
 brew "eza"
 # Render markdown on the CLI
